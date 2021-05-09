@@ -21,3 +21,63 @@ pipelines:
                     arguments:
                       - -c
                       - echo "Building java app"
+
+      - deploy-dev:
+        jobs:
+          build:
+            tasks:
+              - exec:
+                  command: bash
+                  arguments:
+                    - -c
+                    - echo "deploying dev"
+
+      - test-dev:
+        jobs:
+          build:
+            tasks:
+              - exec:
+                  command: bash
+                  arguments:
+                    - -c
+                    - echo "testing-dev"
+
+      - deploy-STG:
+        jobs:
+          build:
+            tasks:
+              - exec:
+                  command: bash
+                  arguments:
+                    - -c
+                    - echo "deploying STG"
+
+      - test-STG:
+        jobs:
+          build:
+            tasks:
+              - exec:
+                  command: bash
+                  arguments:
+                    - -c
+                    - echo "testing-STG"
+
+      - deploy-PRD:
+        jobs:
+          build:
+            tasks:
+              - exec:
+                  command: bash
+                  arguments:
+                    - -c
+                    - echo "deploying PRD"
+
+      - test-PRD:
+        jobs:
+          build:
+            tasks:
+              - exec:
+                  command: bash
+                  arguments:
+                    - -c
+                    - echo "testing-PRD"
