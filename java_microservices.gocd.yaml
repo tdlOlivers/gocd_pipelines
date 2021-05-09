@@ -4,7 +4,7 @@ pipelines:
   java_microservice:
     group: microservices
     lock_behavior: unlockWhenFinished
-    label_template:
+    label_template: "${git_java_microservice}"
     materials: 
       git_java_microservice:
         git: https://github.com/mtararujs/api_tests_ci.git
@@ -19,65 +19,59 @@ pipelines:
                 - exec:
                     command: bash
                     arguments:
-                      - -c
+                      - -c 
                       - echo "Building java app"
-
       - deploy-dev:
-        jobs:
-          build:
-            tasks:
-              - exec:
-                  command: bash
-                  arguments:
-                    - -c
-                    - echo "deploying dev"
-
+          jobs:
+            deploy:
+              tasks:
+                - exec:
+                    command: bash
+                    arguments:
+                      - -c 
+                      - echo "Deploy to DEV"
       - test-dev:
-        jobs:
-          build:
-            tasks:
-              - exec:
-                  command: bash
-                  arguments:
-                    - -c
-                    - echo "testing-dev"
-
-      - deploy-STG:
-        jobs:
-          build:
-            tasks:
-              - exec:
-                  command: bash
-                  arguments:
-                    - -c
-                    - echo "deploying STG"
-
-      - test-STG:
-        jobs:
-          build:
-            tasks:
-              - exec:
-                  command: bash
-                  arguments:
-                    - -c
-                    - echo "testing-STG"
-
-      - deploy-PRD:
-        jobs:
-          build:
-            tasks:
-              - exec:
-                  command: bash
-                  arguments:
-                    - -c
-                    - echo "deploying PRD"
-
-      - test-PRD:
-        jobs:
-          build:
-            tasks:
-              - exec:
-                  command: bash
-                  arguments:
-                    - -c
-                    - echo "testing-PRD"
+          jobs:
+            test:
+              tasks:
+                - exec:
+                    command: bash
+                    arguments:
+                      - -c 
+                      - echo "Tests execution to DEV"
+      - deploy-int:
+          jobs:
+            deploy:
+              tasks:
+                - exec:
+                    command: bash
+                    arguments:
+                      - -c 
+                      - echo "Deploy to INT"
+      - test-int:
+          jobs:
+            test:
+              tasks:
+                - exec:
+                    command: bash
+                    arguments:
+                      - -c 
+                      - echo "Tests execution to INT"
+      - deploy-prd:
+          jobs:
+            deploy:
+              tasks:
+                - exec:
+                    command: bash
+                    arguments:
+                      - -c 
+                      - echo "Deploy to PRD"
+      - test-prd:
+          jobs:
+            test:
+              tasks:
+                - exec:
+                    command: bash
+                    arguments:
+                      - -c 
+                      - echo "Tests execution to PRD"
