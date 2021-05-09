@@ -1,0 +1,22 @@
+---
+format_version: 10
+pipelines:
+  java_microservice:
+    group: microservices
+    lock_behavior: unlockWhenFinished
+    label_template:
+    materials: 
+      git_java_microservice:
+        git: https://github.com/mtararujs/api_tests_ci.git
+        branch: main
+        shallow_clone: true
+        auto_update: true
+    stages: 
+      - build:
+          jobs:
+            build:
+              tasks:
+                - exec:
+                    command: bash
+                    arguments:
+                      - echo "Building java app"
