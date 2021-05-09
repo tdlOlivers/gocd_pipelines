@@ -4,7 +4,7 @@ common:
   deploy-tasks: &deploy-tasks
     - exec: 
         command: bash
-        argument:
+        arguments:
           - -c
           - echo "Deploy on ${ENV_NAME} environment"
 
